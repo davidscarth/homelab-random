@@ -1,0 +1,309 @@
+# SearXNG Settings — Private Instance for Human Use
+#
+# Tuned for: security, privacy, and search quality as a general search feed.
+# Loosely based on Kagi community domain stats (July 2026) and editorial curation.
+#
+# 7/9/2026
+
+use_default_settings: yes
+
+# Server -------------------------------------------------------
+server:
+  secret_key: "[REDACTED]"      # CHANGE THIS — use: openssl rand -hex 32
+  bind_address: "127.0.0.1"     # Using 127.0.0.1 to bind to localhost
+  port: 8888
+  limiter: false                # Set to 'true' to enable rate limiting (requires Valkey/Redis)
+  public_instance: false        # Disable public instance features
+  image_proxy: true             # Proxy images to avoid IP leaks to source servers
+  method: "POST"                # Keep queries out of URLs/logs/history
+  default_http_headers:         # Explicit security headers
+    X-Content-Type-Options: nosniff
+    X-Download-Options: noopen
+    X-Robots-Tag: noindex, nofollow
+    Referrer-Policy: no-referrer
+
+# Search -------------------------------------------------------
+search:
+  safe_search: 0
+  default_lang: "en"            # Set language explicitly
+  formats:
+    - html
+    - json                      # Required for OpenWebUI integration
+# General ------------------------------------------------------
+general:
+  instance_name: "searxng-internal"
+
+# UI -----------------------------------------------------------
+ui:
+  query_in_title: false         # Don't leak queries into browser history/titles
+
+# Outgoing (communication with search engines) -----------------
+outgoing:
+  enable_http2: true            # Explicit HTTP/2 for efficiency
+
+# Plugins ------------------------------------------------------
+plugins:
+  searx.plugins.hostnames.SXNGPlugin:           # Allows us to rewrite hostnames, remove results, or prioritize them
+    active: true
+  searx.plugins.tracker_url_remover.SXNGPlugin: # Strip UTM/tracking params from result URLs
+    active: true
+  searx.plugins.oa_doi_rewrite.SXNGPlugin:      # So we can bypass scholarly article paywalls
+    active: true
+
+# Hostnames Plugin Configuration
+hostnames:
+  replace:              # frontend swaps
+    '(www\.)?twitter\.com$': 'nitter.net'
+    '(www\.)?x\.com$': 'nitter.net'
+    #'(.*\.)?youtube\.com$': 'invidious.local'   # Uncomment if deploying invidious (https://invidious.io/)
+    #'(.*\.)?youtu\.be$': 'invidious.local'      # Uncomment if deploying invidious (https://invidious.io/)
+    #'(www\.)?reddit\.com$': 'redlib.local'      # Uncomment if deploying redlib (https://github.com/redlib-org/redlib)
+  high_priority:        # high quality, free/open access
+    # Knowledge & Reference
+    - '(.*\.)?wikipedia\.org$'
+    - '(.*\.)?wiktionary\.org$'
+    - '(.*\.)?merriam-webster\.com$'
+    - '(.*\.)?archive\.org$'
+    - 'plato\.stanford\.edu$'
+    - 'law\.cornell\.edu$'
+    # Development & Technical Documentation
+    - 'developer\.mozilla\.org$'
+    - '(.*\.)?stackoverflow\.com$'
+    - '(.*\.)?stackexchange\.com$'
+    - '(.*\.)?github\.com$'
+    - '(.*\.)?gitlab\.com$'
+    - '(.*\.)?python\.org$'
+    - '(.*\.)?docs\.rs$'
+    - '(.*\.)?rust-lang\.org$'
+    - '(.*\.)?cppreference\.com$'
+    - '(.*\.)?archlinux\.org$'
+    - '(.*\.)?postgresql\.org$'
+    - '(.*\.)?man7\.org$'
+    - 'docs\.aws\.amazon\.com$'
+    - 'learn\.microsoft\.com$'
+    - 'support\.microsoft\.com$'
+    - 'developer\.apple\.com$'
+    - 'support\.apple\.com$'
+    # Community & Discussion
+    - '(.*\.)?reddit\.com$'
+    - '(.*\.)?ycombinator\.com$'
+    # News & Media - free, quality sources
+    - '(.*\.)?theguardian\.com$'        # No paywall, donation-supported (UK)
+    - '(.*\.)?theverge\.com$'           # No paywall, tech news
+    - '(.*\.)?bbc\.com$'                # No paywall, publicly funded (UK)
+    - '(.*\.)?apnews\.com$'             # Wire service, no paywall
+    - '(.*\.)?reuters\.com$'            # Wire service, no paywall (has dedicated SearXNG engine)
+    - '(.*\.)?npr\.org$'                # Publicly funded, no paywall (US)
+    - '(.*\.)?arstechnica\.com$'        # Tech/science, mostly free
+    - '(.*\.)?france24\.com$'           # Publicly funded, no paywall (France, has English edition)
+    - '(.*\.)?dw\.com$'                 # Publicly funded, no paywall (Germany, has English edition)
+    - '(.*\.)?abc\.net\.au$'            # Publicly funded, no paywall (Australia)
+    - '(.*\.)?cbc\.ca$'                 # Publicly funded, no paywall (Canada)
+    # nytimes: hard paywall - AI can't read content, deprioritized
+    # washingtonpost: soft paywall - AI hits wall more often than not, deprioritized
+    # lemonde.fr: metered paywall - leaving as default priority
+    # Investigative Journalism - non-profit, free, no ads
+    - '(.*\.)?propublica\.org$'
+    - '(.*\.)?theconversation\.com$'
+    - '(.*\.)?theintercept\.com$'
+    # Science, Health & Academia - free access
+    - '(.*\.)?arxiv\.org$'
+    - '(.*\.)?core\.ac\.uk$'
+    - '(.*\.)?nih\.gov$'
+    - '(.*\.)?pubmed\.nih\.gov$'
+    - '(.*\.)?nhs\.uk$'
+    - '(.*\.)?mayoclinic\.org$'
+    - 'my\.clevelandclinic\.org$'       # Cleveland Clinic Health Library
+    # Entertainment, Reviews & Culture
+    - '(.*\.)?imdb\.com$'
+    - '(.*\.)?rottentomatoes\.com$'
+    - '(.*\.)?metacritic\.com$'
+    - '(.*\.)?themoviedb\.org$'
+    - '(.*\.)?steampowered\.com$'
+    - '(.*\.)?rtings\.com$'
+    - '(.*\.)?boardgamegeek\.com$'
+    - '(.*\.)?letterboxd\.com$'
+    - '(.*\.)?myanimelist\.net$'
+    - '(.*\.)?anilist\.co$'
+    - '(.*\.)?genius\.com$'
+    - '(.*\.)?seriouseats\.com$'
+    # Video
+    - '(.*\.)?youtube\.com$'
+  low_priority:                 # mediocre quality or occasionally useful
+    - '(.*\.)?play\.google\.com$'
+    - '(.*\.)?etsy\.com$'
+    - '(.*\.)?sourceforge\.net$'
+    - '(.*\.)?tutorialspoint\.com$'
+    - '(.*\.)?slideshare\.net$'
+    - '(.*\.)?nytimes\.com$'            # Hard paywall - but useful clickable links for humans
+    - '(.*\.)?washingtonpost\.com$'     # Soft paywall - but useful clickable links for humans
+    - '(.*\.)?amazon\.com$'             # E-commerce clutter for LLM - but useful product links for humans
+    - '(.*\.)?amazon\.co\.uk$'          # Regional variant
+    # Low quality gTLDs - may have some legitimate uses, notable spamhaus rankings
+    - '.*\.gay$'        # 2 (Malware category)
+    - '.*\.shop$'       # 47 (General)
+    - '.*\.site$'       # 105 (General)
+    - '.*\.work$'       # 112 (General)
+    - '.*\.xyz$'        # 118 (General)
+    - '.*\.online$'     # 119 (General)
+    # Scam/malware ccTLDs - may have some legitimate uses, but fall into top 3 malware / top 3 phishing ccTLDs on spamhaus.org
+    - '.*\.ru$' # Russia
+    - '.*\.cc$' # Cocos (Keeling) Islands
+    - '.*\.my$' # Malaysia
+    - '.*\.cn$' # China
+    - '.*\.vu$' # Vanuatu
+  remove:               # slop, SEO spam, disinfo, hard paywalls
+    # Slop / SEO spam / Content farms
+    - '(.*\.)?pinterest\.'              # Catches all Pinterest TLDs (.com, .co.uk, .de, .fr, etc.)
+    - '(.*\.)?fandom\.com$'
+    - '(.*\.)?quora\.com$'
+    - '(.*\.)?w3schools\.com$'
+    - '(.*\.)?geeksforgeeks\.org$'
+    - '(.*\.)?makeuseof\.com$'
+    - '(.*\.)?towardsdatascience\.com$'
+    - '(.*\.)?wikihow\.com$'
+    - '(.*\.)?medium\.com$'
+    - '(.*\.)?forbes\.com$'
+    - '(.*\.)?healthline\.com$'
+    - '(.*\.)?webmd\.com$'
+    - '(.*\.)?githubplus\.com$'
+    - '(.*\.)?9to5answer\.com$'
+    - '(.*\.)?appsloveworld\.com$'
+    - '(.*\.)?alternativeto\.net$'
+    - '(.*\.)?libhunt\.com$'
+    - '(.*\.)?solveforum\.com$'
+    - '(.*\.)?giters\.com$'
+    - '(.*\.)?codegrepper\.com$'
+    - '(.*\.)?coder\.social$'
+    - '(.*\.)?issuehint\.com$'
+    - '(.*\.)?geekrepos\.com$'
+    - '(.*\.)?kknews\.cc$'
+    - '(.*\.)?programcreek\.com$'
+    - '(.*\.)?otosection\.com$'
+    - '(.*\.)?bleepcoder\.com$'
+    - '(.*\.)?educba\.com$'
+    - '(.*\.)?drivereasy\.com$'
+    - '(.*\.)?newbedev\.com$'
+    - '(.*\.)?you\.com$'
+    - '(.*\.)?lightrun\.com$'
+    - '(.*\.)?blog\.csdn\.net$'
+    - '(.*\.)?chegg\.com$'
+    - '(.*\.)?coursehero\.com$'
+    - '(.*\.)?scribd\.com$'
+    - '(.*\.)?guru99\.com$'
+    - 'apps\.apple\.com$'               # App Store links, not useful for AI
+    # Social media (except twitter/x, handled by nitter replace)
+    - '(.*\.)?facebook\.com$'
+    - '(.*\.)?instagram\.com$'
+    - '(.*\.)?tiktok\.com$'
+    - '(.*\.)?linkedin\.com$'
+    - '(.*\.)?msn\.com$'
+    # Low-quality journalism
+    - '(.*\.)?foxnews\.com$'
+    - '(.*\.)?foxbusiness\.com$'
+    - '(.*\.)?breitbart\.com$'
+    - '(.*\.)?dailymail\.co\.uk$'
+    - '(.*\.)?nypost\.com$'
+    - '(.*\.)?newsmax\.com$'
+    - '(.*\.)?oann\.com$'
+    - '(.*\.)?dailywire\.com$'
+    - '(.*\.)?dailycaller\.com$'
+    - '(.*\.)?theepochtimes\.com$'
+    - '(.*\.)?thefederalist\.com$'
+    - '(.*\.)?theblaze\.com$'
+    - '(.*\.)?spectator\.org$'
+    - '(.*\.)?cbn\.com$'
+    - '(.*\.)?freebeacon\.com$'
+    - '(.*\.)?ijr\.com$'
+    # Foreign state propaganda (English-language)
+    # Russia
+    - '(.*\.)?rt\.com$'                 # Russia Today
+    - '(.*\.)?sputniknews\.com$'        # Sputnik - Russian state media
+    - '(.*\.)?sputnikglobe\.com$'       # Sputnik rebranded domain
+    - '(.*\.)?tass\.com$'               # TASS - Russian state news agency (.com)
+    - '(.*\.)?tass\.ru$'                # TASS - Russian domain
+    - '(.*\.)?ruptly\.tv$'              # RT's video news agency
+    - '(.*\.)?ria\.ru$'                 # RIA Novosti - Russian state news agency
+    - '(.*\.)?lenta\.ru$'               # Lenta.ru - Kremlin-aligned news
+    - '(.*\.)?kp\.ru$'                  # Komsomolskaya Pravda - pro-Kremlin tabloid
+    # Russia - Pravda disinfo network (150+ domains, 3.6M articles/year targeting LLM training data)
+    - '(.*\.)?news-pravda\.com$'        # Catches all subdomains (serbia.news-pravda.com, etc.)
+    - '(.*\.)?pravda-[a-z]{2,3}\.com$'  # Catches country variants (pravda-fr.com, pravda-de.com, etc.)
+    # China
+    - '(.*\.)?cgtn\.com$'               # China Global Television Network - state-owned
+    - '(.*\.)?globaltimes\.cn$'         # Global Times - CCP-affiliated, aggressive English disinfo
+    - '(.*\.)?chinadaily\.com\.cn$'     # China Daily - state media
+    - '(.*\.)?xinhuanet\.com$'          # Xinhua - state news agency
+    - '(.*\.)?news\.cn$'                # Xinhua alternate domain
+    - '(.*\.)?people\.cn$'              # People's Daily - CCP official newspaper
+    - '(.*\.)?ecns\.cn$'                # China News Service - state-run
+    # Iran
+    - '(.*\.)?presstv\.ir$'             # Press TV - Iranian state media
+    - '(.*\.)?tasnimnews\.com$'         # Tasnim - Iranian state-affiliated
+    # Propaganda amplifiers
+    - '(.*\.)?zerohedge\.com$'
+    - '(.*\.)?thegrayzone\.com$'
+    # Scam/malware TLDs - top 5 malware and top 5 phishing gTLDs on spamhaus.org
+    - '.*\.coupons$'
+    - '.*\.digital$'
+    - '.*\.cam$'
+    - '.*\.fit$'
+    - '.*\.xn--q9jyb4c$'
+    - '.*\.icu$'
+    - '.*\.cfd$'
+    - '.*\.living$'
+    - '.*\.ink$'
+    # Scam/malware TLDs - gTLDs and ccTLDs >=80% malicious at cybercrimeinfocenter.org top 20
+    - '.*\.tk$'                         # Tokelau - was free
+    - '.*\.buzz$'
+    - '.*\.top$'
+    - '.*\.ga$'                         # Gabon - was free
+    - '.*\.ml$'                         # Mali - was free
+    - '.*\.info$'
+    - '.*\.cf$'                         # Central African Republic - was free
+    - '.*\.gq$'                         # Equatorial Guinea - was free
+    - '.*\.wang$'
+    - '.*\.live$'
+    - '.*\.host$'
+    # Scam/malware TLDs - selections from spamhaus.org "All malicious domains" gTLD list
+    - '.*\.qpon$'       # 3
+    - '.*\.villas$'     # 5
+    - '.*\.bid$'        # 7 - former FFM domain
+    - '.*\.voyage$'     # 8
+    - '.*\.loan$'       # 10 - former FFM domain
+    - '.*\.vip$'        # 12
+    - '.*\.xn--j1amh$'  # 18
+    - '.*\.xin$'        # 19
+    - '.*\.biz$'        # 32
+    - '.*\.click$'      # 33
+    - '.*\.gdn$'        # 66
+    - '.*\.trade$'      # 81 - former FFM domain
+    - '.*\.club$'       # 82
+    - '.*\.link$'       # 83
+    - '.*\.date$'       # 89 - former FFM domain
+    - '.*\.win$'        # 91 - former FFM domain
+    # Low quality TLDs - former Famous Four Media (FFM) TLD's not on any other list
+    - '.*\.accountant$'
+    - '.*\.cricket$'
+    - '.*\.download$'
+    - '.*\.faith$'
+    - '.*\.men$'
+    - '.*\.party$'
+    - '.*\.racing$'
+    - '.*\.review$'
+    - '.*\.science$'
+    - '.*\.stream$'
+    - '.*\.webcam$'
+    # Scam/malware TLDs - other bad ccTLDs
+    - '.*\.su$'                         # Soviet Union TLD - unregulated, scam/malware/cybercrime
+    - '.*\.pw$'                         # Palau - heavily abused
+
+# Open Access DOI rewrite Plugin Configuration
+doi_resolvers:
+  oadoi.org: 'https://oadoi.org/'
+  doi.org: 'https://doi.org/'
+  sci-hub.se: 'https://sci-hub.se/'
+  sci-hub.st: 'https://sci-hub.st/'
+  sci-hub.ru: 'https://sci-hub.ru/'
+
+default_doi_resolver: 'oadoi.org'

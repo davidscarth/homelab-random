@@ -139,19 +139,23 @@ hostnames:
     - '(.*\.)?washingtonpost\.com$'     # Soft paywall - but useful clickable links for humans
     - '(.*\.)?amazon\.com$'             # E-commerce clutter for LLM - but useful product links for humans
     - '(.*\.)?amazon\.co\.uk$'          # Regional variant
-    # Low quality gTLDs - may have some legitimate uses, notable spamhaus rankings
+    # Low quality gTLDs - may have some legitimate uses, spamhaus rankings noted
     - '.*\.gay$'        # 2 (Malware category)
     - '.*\.shop$'       # 47 (General)
     - '.*\.site$'       # 105 (General)
     - '.*\.work$'       # 112 (General)
     - '.*\.xyz$'        # 118 (General)
     - '.*\.online$'     # 119 (General)
-    # Scam/malware ccTLDs - may have some legitimate uses, but fall into top 3 malware / top 3 phishing ccTLDs on spamhaus.org
-    - '.*\.ru$' # Russia
-    - '.*\.cc$' # Cocos (Keeling) Islands
-    - '.*\.my$' # Malaysia
-    - '.*\.cn$' # China
-    - '.*\.vu$' # Vanuatu
+    - '.*\.today$'      # Ranked 4th on Interisle Phishing Landscape 2025
+    # Low quality ccTLDs - may have some legitimate uses
+    - '.*\.ru$' # Russia - top 3 malware / top 3 phishing ccTLDs on spamhaus.org
+    - '.*\.cc$' # Cocos (Keeling) Islands - top 3 malware / top 3 phishing ccTLDs on spamhaus.org
+    - '.*\.my$' # Malaysia - top 3 malware / top 3 phishing ccTLDs on spamhaus.org
+    - '.*\.cn$' # China - top 3 malware / top 3 phishing ccTLDs on spamhaus.org
+    - '.*\.vu$' # Vanuatu - top 3 malware / top 3 phishing ccTLDs on spamhaus.org
+    - '.*\.yt$' # Mayotte - Ranked 1st on netapi.com/research/tld-abuse/
+    - '.*\.ug$' # Uganda - Ranked 6th on netapi.com/research/tld-abuse/
+    - '.*\.tf$' # French Southern and Antarctic Lands - Ranked 9th on netapi.com/research/tld-abuse/
   remove:               # slop, SEO spam, disinfo, hard paywalls
     # Slop / SEO spam / Content farms
     - '(.*\.)?pinterest\.'              # Catches all Pinterest TLDs (.com, .co.uk, .de, .fr, etc.)
@@ -250,18 +254,18 @@ hostnames:
     - '.*\.fit$'
     - '.*\.xn--q9jyb4c$'
     - '.*\.icu$'
-    - '.*\.cfd$'                        # Ranked 3rd on Interisle Phishing Landscape 2025
+    - '.*\.cfd$'        # Ranked 3rd on Interisle Phishing Landscape 2025
     - '.*\.living$'
     - '.*\.ink$'
     # Scam/malware TLDs - gTLDs and ccTLDs >=80% malicious at cybercrimeinfocenter.org 2020 Top 20
-    - '.*\.tk$'                         # Tokelau - was free
+    - '.*\.tk$'         # Tokelau - was free
     - '.*\.buzz$'
     - '.*\.top$'
-    - '.*\.ga$'                         # Gabon - was free
-    - '.*\.ml$'                         # Mali - was free
+    - '.*\.ga$'         # Gabon - was free
+    - '.*\.ml$'         # Mali - was free
     - '.*\.info$'
-    - '.*\.cf$'                         # Central African Republic - was free
-    - '.*\.gq$'                         # Equatorial Guinea - was free
+    - '.*\.cf$'         # Central African Republic - was free
+    - '.*\.gq$'         # Equatorial Guinea - was free
     - '.*\.wang$'
     - '.*\.live$'
     - '.*\.host$'
@@ -296,8 +300,9 @@ hostnames:
     - '.*\.webcam$'
     # Scam/malware gTLDs - other bad gTLDs
     - '.*\.bond$'       # Ranked 2nd on Interisle Phishing Landscape 2025
-    - '.*\.today$'      # Ranked 4th on Interisle Phishing Landscape 2025
     - '.*\.lol$'        # Ranked 5th on Interisle Phishing Landscape 2025
+    - '.*\.rest$'       # Ranked 7th on netapi.com/research/tld-abuse/
+    - '.*\.surf$'       # Ranked 10th on netapi.com/research/tld-abuse/
     # Scam/malware ccTLDs - other bad ccTLDs
     - '.*\.su$'         # Soviet Union TLD - unregulated, scam/malware/cybercrime
     - '.*\.pw$'         # Palau - heavily abused

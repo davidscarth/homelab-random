@@ -91,6 +91,7 @@ hostnames:
     - '(.*\.)?theguardian\.com$'        # No paywall, donation-supported (UK)
     - '(.*\.)?theverge\.com$'           # No paywall, tech news
     - '(.*\.)?bbc\.com$'                # No paywall, publicly funded (UK)
+    - '(.*\.)?bbc\.co\.uk$'             # Older domain, may redirect
     - '(.*\.)?apnews\.com$'             # Wire service, no paywall
     - '(.*\.)?reuters\.com$'            # Wire service, no paywall (has dedicated SearXNG engine)
     - '(.*\.)?npr\.org$'                # Publicly funded, no paywall (US)
@@ -190,7 +191,7 @@ hostnames:
     - '(.*\.)?newbedev\.com$'
     - '(.*\.)?you\.com$'
     - '(.*\.)?lightrun\.com$'
-    - '(.*\.)?blog\.csdn\.net$'
+    - '(.*\.)?csdn\.net$'
     - '(.*\.)?chegg\.com$'
     - '(.*\.)?coursehero\.com$'
     - '(.*\.)?scribd\.com$'

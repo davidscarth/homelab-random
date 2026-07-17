@@ -12,7 +12,7 @@ server:
   secret_key: "[REDACTED]"      # CHANGE THIS — use: openssl rand -hex 32
   bind_address: "0.0.0.0"       # Using 0.0.0.0 here for Docker container access, use docker port rules to limit access
                                 # 127.0.0.1 only works when processes share network (i.e. bare metal, host mode)
-  port: 8080                    
+  port: 8080
   limiter: false                # Set to 'true' to enable rate limiting (requires Valkey/Redis)
   public_instance: false        # Disables public instance features
   image_proxy: true             # Proxy images to avoid IP leaks to source servers

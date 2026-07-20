@@ -64,7 +64,6 @@ hostnames:
   replace:              # frontend swaps
     '^(www\.)?twitter\.com$': 'nitter.net'
     '^(www\.)?x\.com$': 'nitter.net'
-    '^(.*\.)?reddit\.com$': 'old.reddit.com'
     #'^(.*\.)?youtube\.com$': 'invidious.local'  # Uncomment if deploying invidious (https://invidious.io/)
     #'^(.*\.)?youtu\.be$': 'invidious.local'     # Uncomment if deploying invidious (https://invidious.io/)
     #'^(www\.)?reddit\.com$': 'redlib.local'     # Uncomment if deploying redlib (https://github.com/redlib-org/redlib)

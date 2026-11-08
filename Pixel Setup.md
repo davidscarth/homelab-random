@@ -1,3 +1,5 @@
+# Google Pixel Setup
+
 ## First Boot
 
 1. At the "Hi there" screen, tap **Next**, then choose your language.

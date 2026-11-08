@@ -153,8 +153,6 @@ Now that you are signed in, additional tiles and options will appear. Tap **All 
 
 > **Note:** If you have a screen protector applied, scan the QR code on the screen protector packaging to let the phone calibrate for it (Pixel 10 or later) and start the fingerprint enrollment.
 
-> **Note:** When opening apps for the first time (such as Camera or the Play Store), you may be prompted to enable optional features, sign up for newsletters, or grant permissions. Decline anything that isn't necessary for the app to function.
-
 ## App Updates
 
 1. Open the **Google Play Store** app.
@@ -163,6 +161,8 @@ Now that you are signed in, additional tiles and options will appear. Tap **All 
 4. Under "Updates available," tap **Update all**. Wait for all apps to finish updating.
 
 ## App Settings
+
+When opening apps for the first time (such as Camera or the Play Store), you may be prompted to enable optional features, sign up for newsletters, or grant permissions. Decline anything that isn't necessary for the app to function.
 
 ### Google Messages
 

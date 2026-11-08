@@ -1,5 +1,7 @@
 # Google Pixel Setup
 
+This guide was written for the Pixel 11 series on Android 17. It should also apply generally to earlier Pixels on Android 17.
+
 ## First Boot
 
 1. At the "Hi there" screen, tap **Next**, then choose your language.
@@ -141,3 +143,57 @@ Now that you are signed in, additional tiles and options will appear. Tap **All 
 3. Follow the directions to get the SIM set up or transferred.
 
 > **Note:** For transfers, if you have "SIM Protection" enabled on your carrier account you will need to turn it off first.
+
+## Convenience (Optional)
+
+1. In **Settings**, tap **Location** and toggle **Use location** to **On**.
+2. In **Settings**, tap **Security & privacy**, then **Device unlock**.
+3. Tap **Fingerprint Unlock** and follow the prompts to enroll a fingerprint.
+
+> **Note:** If you have a screen protector applied, scan the QR code on the screen protector packaging to let the phone calibrate for it (Pixel 10 or later) and start the fingerprint enrollment.
+
+> **Note:** When opening apps for the first time (such as Camera or the Play Store), you may be prompted to enable optional features, sign up for newsletters, or grant permissions. Decline anything that isn't necessary for the app to function.
+
+## App Updates
+
+1. Open the **Google Play Store** app.
+2. It will ask you to choose **Use password** or **Use biometrics**. Select your preference.
+3. Tap your profile icon in the top right, then tap **Manage apps & device**.
+4. Under "Updates available," tap **Update all**. Wait for all apps to finish updating.
+
+## App Settings
+
+### Google Messages
+
+1. Open the **Messages** app.
+2. Tap **Show name and picture to** and select **No one**, then continue.
+3. Tap your picture in the top right corner, then tap your profile, then tap **Use this app without an account** to sign out of Messages. Tap **Sign out** to confirm.
+4. Tap the empty person icon in the top right corner (be careful not to tap your account at the top or it will auto sign-in again). Tap **Messages settings**.
+5. Tap **Gemini in Messages**, then toggle **Show Gemini button** to **Off**.
+6. Tap **Advanced**, then toggle **Get SMS delivery reports** to **On**.
+
+### Phone
+
+1. Open the **Phone** app.
+2. Tap the hamburger menu (top left), then **Settings**.
+3. Under "Call Assist," tap **Hold for Me** and toggle it to **On**.
+4. Tap **Direct My Call** and toggle it to **On**.
+5. Tap **Call Screen** and confirm that **Medium protection (recommended)** is turned on, along with **Save Call Screen audio**.
+6. Tap **Call Notes** and download the model.
+
+### Google Chrome
+
+1. Open **Chrome**. Tap **Stay signed out**, then **No thanks** to notifications.
+2. The new tab page will be busy. Tap the three-dot menu (top right), then **Customize new tab page**.
+3. Tap **My shortcuts** and toggle it to **Off**.
+4. Tap **New tab page cards** and toggle it to **Off**.
+5. Tap **Discover feed** and toggle it to **Off**.
+6. Tap the three-dot menu again, then **Settings**.
+7. Under "Basics":
+   - Tap **Search engine** and change it to **DuckDuckGo**.
+   - Tap **Privacy and security**. Tap **Third-party cookies** and set to **Block third-party cookies**. Tap **Send a "Do Not Track" request** and toggle it to **On**. Toggle **Access payment methods** to **Off**.
+8. Under "Passwords and Autofill":
+   - In **Payment methods**, toggle **Save security codes** to **Off**, then toggle **Save and fill payment methods** to **Off**.
+   - In **Addresses and more**, toggle **Save and fill addresses** to **Off**, then toggle **Automatically verify your email** to **Off**.
+9. Under "Advanced":
+   - Tap **Appearance**, then **Toolbar shortcut**, and change it to **New Tab**.

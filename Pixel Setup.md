@@ -1,5 +1,3 @@
-# Google Pixel Setup
-
 ## First Boot
 
 1. At the "Hi there" screen, tap **Next**, then choose your language.
@@ -110,7 +108,7 @@ Tap the **Finish setting up** option at the top. Google will be insufferable abo
 2. Scroll down and tap **System**, then **Software updates**.
 3. Tap **System update**, then **Check for update**. If a new update is available, install and reboot. If "Your system is up to date," proceed to add your Google account.
 
-## Add Your Google Account
+## Add your Google Account
 
 1. Back in Settings, tap **Google services**.
 2. Under "Recommended," there will be a "Sign in" tile. Tap the **Sign in** button.
@@ -127,3 +125,17 @@ Now that you are signed in, additional tiles and options will appear. Tap **All 
 
 1. On your home screen, it will say "Explore your Pixel" with the subheading "Learn the basics and find new features." Long-press it and tap **Dismiss**. It will now display today's date instead.
 2. Pull down your notifications and swipe away any lingering first-setup notifications.
+
+## Update Google Play Services
+
+1. In **Settings**, tap **System**, then **Software updates**.
+2. Tap **Google Play system update** (right under "System update"). It will automatically check for updates.
+3. If an update is available, tap **Download & install**. Once the update completes, tap "Restart now".
+
+## Add your SIM
+
+1. In **Settings**, tap **Network & internet**, then **SIMs**.
+2. If this is a brand new line, tap **Set up eSIM**. If you are moving an eSIM, tap **Transfer a SIM from another device**.
+3. Follow the directions to get the SIM set up or transferred.
+
+> **Note:** For transfers, if you have "SIM Protection" enabled on your carrier account you will need to turn it off first.

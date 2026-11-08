@@ -94,6 +94,7 @@ Tap the **Finish setting up** option at the top. Google will be insufferable abo
 7. In Gboard settings, tap **Corrections & suggestions**, then toggle **Don't suggest offensive words** to **Off**.
 8. In Gboard settings, tap **Privacy**, then toggle **Share usage statistics**, **Personalize for you**, and **Improve for everyone** all to **Off**.
 9. Back in "Keyboard apps," tap **Google Voice Typing** to open its settings (not the toggle). Toggle **Block offensive words** to **Off**.
+10. Back in **System**, tap **Gestures**, then **Press & hold power button**. Change it to **Power menu**.
 
 ## Connect to Wi-Fi
 
@@ -197,3 +198,11 @@ Now that you are signed in, additional tiles and options will appear. Tap **All 
    - In **Addresses and more**, toggle **Save and fill addresses** to **Off**, then toggle **Automatically verify your email** to **Off**.
 9. Under "Advanced":
    - Tap **Appearance**, then **Toolbar shortcut**, and change it to **New Tab**.
+
+## Opt Out of Binding Arbitration
+
+1. In **Settings**, tap **About phone**, then **Model** to find your **Serial number**. Long-press to copy it.
+2. In Chrome, visit `g.co/devicearbitration/optout`.
+3. Select your Pixel device from the dropdown, paste your serial number, and tap **Submit**.
+
+> **Note:** You must do this within 30 days of first activating your device. This preserves your right to take legal action against Google rather than being forced into arbitration. It does not affect your warranty or your use of the device in any way.

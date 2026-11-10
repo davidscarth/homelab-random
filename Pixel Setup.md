@@ -9,14 +9,14 @@ This guide was written for the Pixel 11 series on Android 17. It should also app
 3. At "Connect to Wi-Fi," tap **Skip**.
 4. At "Connect to mobile network," tap **Set up offline**, then **Continue** at the confirmation.
 5. PIN is optional. I would recommend setting one up now, or you may tap **Skip**.
-6. If you set a PIN, you can optionally set up Fingerprint Unlock, or tap **No thanks**.
-7. If you set a PIN, you can optionally set up Face Unlock, or tap **No thanks**.
-8. At the "Google services" screen, toggle off **Use location** and **Send usage and diagnostic data**, then scroll down and tap **Accept**.
-9. At the "Limited warranty" screen, tap **Next**.
-10. At "Additional legal terms," tap **I accept**.
-11. At "Get peace of mind," tap **Next**.
-12. At "Learn how to navigate your phone," tap **Skip**.
-13. At "Meet your new Pixel," tap **Choose how to navigate**, select **3-button navigation**, then tap the **Home** button.
+   - If you set a PIN, you can optionally set up Fingerprint Unlock, or tap **No thanks**.
+   - If you set a PIN, you can optionally set up Face Unlock, or tap **No thanks**.
+6. At the "Google services" screen, toggle off **Use location** and **Send usage and diagnostic data**, then scroll down and tap **Accept**.
+7. At the "Limited warranty" screen, tap **Next**.
+8. At "Additional legal terms," tap **I accept**.
+9. At "Get peace of mind," tap **Next**.
+10. At "Learn how to navigate your phone," tap **Skip**.
+11. At "Meet your new Pixel," tap **Choose how to navigate**, select **3-button navigation**, then tap the **Home** button.
 
 You will now be at your home screen. There will be a few first-time notifications. Tap **Clear all** to dismiss them, then swipe away the "Finish setting up your device" persistent notification.
 
@@ -190,14 +190,16 @@ When opening apps for the first time (such as Camera or the Play Store), you may
 4. Tap **New tab page cards** and toggle it to **Off**.
 5. Tap **Discover feed** and toggle it to **Off**.
 6. Tap the three-dot menu again, then **Settings**.
-7. Under "Basics":
+7. Under "You and Google":
+   - Tap **Google services**. Toggle **Allow Chrome sign-in** to **Off**, **Help improve Chrome's features and performance** to **Off**, and **Improve search suggestions** to **Off**.
+8. Under "Basics":
    - Tap **Search engine** and change it to **DuckDuckGo**.
    - Tap **Privacy and security**. Tap **Third-party cookies** and set to **Block third-party cookies**. Tap **Send a "Do Not Track" request** and toggle it to **On**. Toggle **Access payment methods** to **Off**.
-8. Under "Passwords and Autofill":
+9. Under "Passwords and Autofill":
    - In **Payment methods**, toggle **Save security codes** to **Off**, then toggle **Save and fill payment methods** to **Off**.
    - In **Addresses and more**, toggle **Save and fill addresses** to **Off**, then toggle **Automatically verify your email** to **Off**.
-9. Under "Advanced":
-   - Tap **Appearance**, then **Toolbar shortcut**, and change it to **New Tab**.
+10. Under "Advanced":
+    - Tap **Appearance**, then **Toolbar shortcut**, and change it to **New Tab**.
 
 ## Opt Out of Binding Arbitration
 
